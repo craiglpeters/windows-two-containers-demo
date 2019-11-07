@@ -1,0 +1,57 @@
+{
+  "apiVersion": "vlabs",
+  "properties": {
+    "orchestratorProfile": {
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.16",
+      "kubernetesConfig": {
+        "loadBalancerSku": "Standard",
+        "excludeMasterFromStandardLB": true
+    },
+    "masterProfile": {
+      "count": 1,
+      "dnsPrefix": "wink8s1",
+      "vmSize": "Standard_D8s_v3"
+    },
+    "agentPoolProfiles": [
+      {
+        "name": "windowspool2",
+        "count": 2,
+        "vmSize": "Standard_D8s_v3",
+        "availabilityProfile": "AvailabilitySet",
+        "osType": "Windows",
+        "osDiskSizeGB": 128,
+        "extensions": [
+            {
+                "name": "winrm"
+            }
+        ]
+      }
+    ],
+    "windowsProfile": {
+      "adminUsername": "azureuser",
+      "adminPassword": "OnlyForDemo1234$",
+      "sshEnabled": true
+    },
+    "linuxProfile": {
+      "adminUsername": "azureuser",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEzbzVdEuttv8EYmlPFZ54o83c7b4kvt5GC4uPow+/jRT68acRWFdEnOxH/Dtae7sQkdBDIi7VzwCPHzC1aBNO/EdbY6pbm2RxklAaMTZYGAlObU/R4/d81hAq9w5LxexVwpJXShX04dff9goKGYkCqdsd1/s8bSI4IGg/UdL0XElAHvk13N8cFP94yxd+TI6LBZ3RO0Sn25bjq3127iN+qwLj3aIqFf5cO/Bbt0/Cd6V5qXpF+7Vh844IsaRnsLbrb5UcdhczQk9zJi/bNBd88P8UPaaRzfjJQJD3XzJ9hLog8fD9+qkj5+VPBoQIQftWTbXlHUvl9Yd1vmj4E4c2wT5KT8DnlX9uC1GnUUKMgBuiBboumOPRjV0yMF/z+LnIZHbwoE4vYCviH0mD1ggxudHhoOc9UnukOlROEHoS7tlAg3izztMwsVkiEziUpLLArkmffe2lv9IcMhh7RwWHbkTJyJBicA0wCubwp5HqXZqwbCRs8fjRG8/DVFamKhzVZ0si5JA1MEfL+R9K/N/oOCaw3JlR7C0D05ZUSUSJ13vM8a9jDf/wtjcF7OURG1TiZ9MLPVprimkJ8eYwpIZj+trL/mQhe9vkXU+1f34bUrDeiTBie0trAWgYoVsCbvmAXpfEQp+ZKkHESjolALc7raeitV1QpM7xIjZdbSzUhQ== craig.l.peters@gmail.com"
+          }
+        ]
+      }
+    },
+    "servicePrincipalProfile": {
+      "clientId": "1e01ea6f-6a6e-402c-8914-5c1e094c9bf0",
+      "secret": "664ec3b2-4cb6-4a6e-8b25-704338016021"
+    },
+    "extensionProfiles": [
+      {
+        "name": "winrm",
+        "version": "v1"
+      }
+    ]
+  }
+}

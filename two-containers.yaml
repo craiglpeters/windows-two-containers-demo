@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: two-containers
+  name: two-containers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: two-containers
+  template:
+    metadata:
+      labels:
+        app: two-containers
+      name: two-containers
+    spec:
+      volumes:
+      - name: shared-data
+        emptyDir: {}
+
+      containers:
+        - name: iis-container
+          image: mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
+          resources:
+            limits:
+              cpu: 1
+              memory: 800Mi
+            requests:
+              cpu: .1
+              memory: 300Mi
+          ports:
+            - containerPort: 80
+          volumeMounts:
+          - name: shared-data
+            mountPath: /wwwcache
+          command:
+          - powershell.exe
+          - -command
+          - "while ($true) { Start-Sleep -Seconds 10; Copy-Item -Path C:\\wwwcache\\iisstart.htm -Destination C:\\inetpub\\wwwroot\\iisstart.htm; }"
+
+        - name: servercore-container
+          image: mcr.microsoft.com/windows/servercore:ltsc2019
+          resources:
+            limits:
+              cpu: 1
+              memory: 800Mi
+            requests:
+              cpu: .1
+              memory: 300Mi
+          volumeMounts:
+          - name: shared-data
+            mountPath: /poddata
+          command:
+          - powershell.exe
+          - -command
+          - "$i=0; while ($true) { Start-Sleep -Seconds 10; $msg = 'Hello from the servercore container, count is {0}' -f $i; Set-Content -Path C:\\poddata\\iisstart.htm -Value $msg; $i++; }"
+
+      nodeSelector:
+        beta.kubernetes.io/os: windows

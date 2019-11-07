@@ -36,5 +36,6 @@ $ kubectl get pods
 $ kubectl exec -ti two-containers-… powershell
 ```
 ```Powershell
-PS C:\> Get-Content .\inetpub\logs\LogFiles\W3SVC1\u_ex191105.log -Tail 2
+PS C:\> Dir .\inetpub\logs\LogFiles\W3SVC1\
+PS C:\> Get-Content .\inetpub\logs\LogFiles\W3SVC1\u_ex191105.log -Tail 2 #replace log file name
 ```

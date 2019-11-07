@@ -3,7 +3,7 @@ Quick demo using AKS Engine to create a cluster with Windows nodes and deploy a 
 
 Summary:
 1. Follow the steps in the [AKS Engine Quickstart](https://github.com/Azure/aks-engine/blob/master/docs/tutorials/quickstart.md) using the kubernetes.json in this repo
-2. Apply the two-containers.yaml in this repo to the cluster
+2. Apply the two-containers.yaml in this repo to the cluster (borrowed from the aks-engine [windows-and-kubernetes](https://github.com/Azure/aks-engine/blob/master/docs/topics/windows-and-kubernetes.md#multiple-containers-in-a-pod) examples
 
 Step by step from my Mac
 ```bash

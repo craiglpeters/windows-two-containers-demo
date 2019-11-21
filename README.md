@@ -20,10 +20,7 @@ $ curl -L https://raw.githubusercontent.com/Azure/aks-engine/master/examples/win
 # edit dnsPrefix, adminPassword, keyData, clientId, secret 
 $ code kubernetes.json
 $ aks-engine generate kubernetes.json
-$ az group deployment create –g $RESOURCEGROUP 
-–-template-file "./_output/wink8s1/azuredeploy.json" 
-–-parameters "./_output/wink8s1/azuredeploy.parameters.json” 
-> az-group-deployment.out
+$ az group deployment create –g $RESOURCEGROUP –-template-file "./_output/wink8s1/azuredeploy.json" –-parameters "./_output/wink8s1/azuredeploy.parameters.json" > az-group-deployment.out
 $ export KUBECONFIG=$(PWD)/_output/wink8s1/kubeconfig/kubeconfig.southcentralus.json
 $ kubectl get nodes –o wide
 $ kubectl apply –f two-containers.yaml

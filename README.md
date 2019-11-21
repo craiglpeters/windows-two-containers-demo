@@ -19,7 +19,7 @@ $ export SERVICEPRINCIPAL=$(az ad sp create-for-rbac --role="Contributor" --scop
 $ curl -L https://raw.githubusercontent.com/Azure/aks-engine/master/examples/windows/kubernetes.json -o kubernetes.json
 # edit dnsPrefix, adminPassword, keyData, clientId, secret 
 $ code kubernetes.json
-$ aks-engine.exe generate kubernetes.json
+$ aks-engine generate kubernetes.json
 $ az group deployment create –g $RESOURCEGROUP 
 –-template-file "./_output/wink8s1/azuredeploy.json" 
 –-parameters "./_output/wink8s1/azuredeploy.parameters.json” 
